@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[TenantUser]
+(
+	[Id] BIGINT PRIMARY KEY IDENTITY(1,1), 
+    [User] VARCHAR(60) NOT NULL, 
+    [TenantId] BIGINT NOT NULL, 
+    [IsActive] NCHAR(10) NOT NULL DEFAULT 1
+)

@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Logged]
+(
+	[Id] BIGINT NOT NULL PRIMARY KEY, 
+    [UserName] VARCHAR(50) NOT NULL, 
+	[CreatedOn] DATETIME NOT NULL DEFAULT GETDATE(), 
+	[AccessToken] VARCHAR(MAX) NULL,
+	[ExpTime] DATETIME NULL,
+	[RefreshToken] VARCHAR(MAX) NULL,
+	[RefreshTokenExpiryTime] DATETIME NULL,
+	[DeviceId] NVARCHAR(250) NULL
+)

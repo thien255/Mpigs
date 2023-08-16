@@ -1,0 +1,850 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f59edc2e-800c-49e7-ab1f-1dc8ae2b034f" ChangeDateTime="07/24/2023 14:49:40">
+    <Property Name="ElementName" Value="[dbo].[Heo].[GiongId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Giong" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aa6d359a-2bcc-42f6-8682-138ccb24e1fc" ChangeDateTime="07/24/2023 14:55:23">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[NoiNhap]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HienTrangLucNhapDan" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0579213b-10e7-400d-9741-ea6b2feee0ed" ChangeDateTime="07/24/2023 15:03:28">
+    <Property Name="ElementName" Value="[dbo].[XuatHeo].[ThanhTien]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[XuatHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TongTien" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="01aac085-722d-4579-95cf-661e1d8ac50a" ChangeDateTime="07/24/2023 15:05:15">
+    <Property Name="ElementName" Value="[dbo].[XuatHeo].[NoiXuat]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[XuatHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="KhachHang" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ae5ed548-2dfc-47d6-a2ea-544f20c7d0b2" ChangeDateTime="07/24/2023 15:12:06">
+    <Property Name="ElementName" Value="[dbo].[GiaPha].[TaiBo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GiaPha]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Bo" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aa467490-0f22-4dbf-a11f-9a3fbddf7d13" ChangeDateTime="07/24/2023 15:12:10">
+    <Property Name="ElementName" Value="[dbo].[GiaPha].[TaiMe]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GiaPha]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Me" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3c5abf37-bb57-4b5b-9e40-400417d26607" ChangeDateTime="07/24/2023 15:12:14">
+    <Property Name="ElementName" Value="[dbo].[GiaPha].[TaiOngNoi]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GiaPha]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OngNoi" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="695b17fe-32d4-47e1-840d-be26edec6af7" ChangeDateTime="07/24/2023 15:19:25">
+    <Property Name="ElementName" Value="[dbo].[LichSuChuyenChuong].[NgayVao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LichSuChuyenChuong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ONuoi" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0c65fd68-a98e-4c1e-8d5c-a1ebda148b01" ChangeDateTime="07/24/2023 15:25:49">
+    <Property Name="ElementName" Value="[dbo].[ChuongNuoi].[ChuongTen]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ChuongNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Ten" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8f5186f2-229e-4fa0-be2d-d578502b11e2" ChangeDateTime="07/24/2023 15:31:12">
+    <Property Name="ElementName" Value="[dbo].[Trai].[Ten]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Trai]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ab6c4234-da02-42a5-a508-fd7790bcb0f8" ChangeDateTime="07/24/2023 15:31:15">
+    <Property Name="ElementName" Value="[dbo].[Trai].[MaTrai]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Trai]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Code" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="68c76351-3d98-4de0-9c53-d24451f5166f" ChangeDateTime="07/24/2023 15:31:19">
+    <Property Name="ElementName" Value="[dbo].[Trai].[LoaiTrai]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Trai]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Type" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2d2ac322-4cd1-4c7f-bd58-5a131ca887d6" ChangeDateTime="07/24/2023 15:31:24">
+    <Property Name="ElementName" Value="[dbo].[Trai].[CapTren]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Trai]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Parent" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7d937d1c-b5aa-460e-844c-de3d4fea281f" ChangeDateTime="07/24/2023 15:38:18">
+    <Property Name="ElementName" Value="[dbo].[Heo].[SoTai]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="01a6d160-6b9d-4710-84e3-052d3f855614" ChangeDateTime="07/24/2023 15:38:23">
+    <Property Name="ElementName" Value="[dbo].[Heo].[Ma]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Code" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="da3419b0-0442-4278-b6dc-783b1494bea7" ChangeDateTime="07/24/2023 15:44:14">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[LanPhoi]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LuaDe" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="668d69dc-ad90-4ac8-b47d-c1493d15a894" ChangeDateTime="07/24/2023 15:45:22">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[Kua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="KieuPhoi" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f03a41c2-5d44-45cd-9b24-c954fe070f39" ChangeDateTime="07/24/2023 15:57:05">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[ChetTrongQuaTrinhNuoi]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeNuoi" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1f3bbefc-57e6-4e03-91ad-8f910de2ff5a" ChangeDateTime="07/24/2023 15:57:26">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[NgayCaiSu]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NgayCaiSua" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="536b0e4e-7d75-4a1b-8c54-f239fa0d3b72" ChangeDateTime="07/25/2023 02:22:40">
+    <Property Name="ElementName" Value="[dbo].[Thit_NhapHeo].[LoaiNhap]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Thit_NhapHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Kieu" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7dfb2903-3c1a-4cc0-8cb5-566efdc6eda6" ChangeDateTime="07/25/2023 02:57:14">
+    <Property Name="ElementName" Value="[dbo].[Thit_HoaDon].[NguonNhap]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Thit_HoaDon]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TraiXuatId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2420fe85-7e9f-4d6d-b568-d394f1c9d1ae" ChangeDateTime="07/25/2023 03:21:19">
+    <Property Name="ElementName" Value="[dbo].[Thit_NhapHeo].[TongNhap]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Thit_NhapHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SoCon" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="70c0e15f-a162-4b8f-bdf8-5611d9dd8419" ChangeDateTime="07/25/2023 03:27:31">
+    <Property Name="ElementName" Value="[dbo].[Thit_NhapHeo].[NhapTuTrai]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Thit_NhapHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TraiXuatNhapId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="942baee0-6c2d-49aa-b839-ae7c0fea5efb" ChangeDateTime="07/25/2023 03:27:35">
+    <Property Name="ElementName" Value="[dbo].[Thit_XuatHeo].[NhapTuTrai]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Thit_XuatHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TraiXuatNhapId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b28e8f3b-5c07-4c06-a103-155caaf8ca58" ChangeDateTime="07/25/2023 04:41:56">
+    <Property Name="ElementName" Value="[dbo].[DanhMuc_ThucAn].[NhaCungCap]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DanhMuc_ThucAn]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NhaCungCapId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="47217a01-77a1-4425-8b1b-9e2190836b53" ChangeDateTime="08/15/2023 07:16:35">
+    <Property Name="ElementName" Value="[dbo].[Trai].[UpdatedTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Trai]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LatestUpdatedOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7d38dc9a-e55a-4fd7-ace0-727d5ff84527" ChangeDateTime="08/15/2023 07:16:38">
+    <Property Name="ElementName" Value="[dbo].[Trai].[CreatedTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Trai]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a74631e0-b926-4bfa-8156-413755b0acff" ChangeDateTime="08/15/2023 07:19:46">
+    <Property Name="ElementName" Value="[dbo].[Heo].[NgayLoaiThai]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TimeLeave" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="59571859-a618-47ec-adfb-5d44791fd148" ChangeDateTime="08/15/2023 07:19:50">
+    <Property Name="ElementName" Value="[dbo].[Heo].[NgayNhapDan]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TimeJoinIn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3c3bfcea-0aa6-4d03-97b1-a1a7317fc7f0" ChangeDateTime="08/15/2023 07:19:54">
+    <Property Name="ElementName" Value="[dbo].[Heo].[GioiTinh]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Sex" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7441f0f8-c1cd-4a73-acc3-e8ba6dca6b5a" ChangeDateTime="08/15/2023 07:19:59">
+    <Property Name="ElementName" Value="[dbo].[Heo].[NgaySinh]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BirthDay" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="94879733-7c19-4edb-be93-cb7339cc047d" ChangeDateTime="08/15/2023 07:20:06">
+    <Property Name="ElementName" Value="[dbo].[Heo].[Ma]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Code" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b8afb4f8-03ad-46a4-9242-abf904e4ab0e" ChangeDateTime="08/15/2023 07:20:09">
+    <Property Name="ElementName" Value="[dbo].[Heo].[SoHieu]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4a9d01b9-72a3-4d4d-a05f-b50f81a87a51" ChangeDateTime="08/15/2023 07:20:31">
+    <Property Name="ElementName" Value="[dbo].[Heo].[HienTrang]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Status" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="409631b8-3d4f-4521-bb54-a024c50f5b00" ChangeDateTime="08/15/2023 07:20:34">
+    <Property Name="ElementName" Value="[dbo].[Heo].[GhiChu]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Note" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="725c73bb-099c-407a-bcc3-fc61b26dfac6" ChangeDateTime="08/15/2023 07:20:43">
+    <Property Name="ElementName" Value="[dbo].[Heo].[NgayTao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreateOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5b2b6ede-9fa4-4ca4-a8ad-94f48e43ea64" ChangeDateTime="08/15/2023 07:20:48">
+    <Property Name="ElementName" Value="[dbo].[Heo].[NguoiTao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreateBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7deaa2cb-b018-49fe-8a26-f23458eba519" ChangeDateTime="08/15/2023 07:20:54">
+    <Property Name="ElementName" Value="[dbo].[Heo].[NgaySua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastUpdateOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6620f9c4-c66e-4750-a26d-877423b8c034" ChangeDateTime="08/15/2023 07:21:01">
+    <Property Name="ElementName" Value="[dbo].[Heo].[LastUpdateOn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LatestUpdatedOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ce5936b0-9a1e-4a6c-951a-00a25f51f0f3" ChangeDateTime="08/15/2023 07:21:14">
+    <Property Name="ElementName" Value="[dbo].[Heo].[CreateOn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fdefe518-ae53-43b1-9543-952dc717725f" ChangeDateTime="08/15/2023 07:21:15">
+    <Property Name="ElementName" Value="[dbo].[Heo].[CreateBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7580bc84-e2a5-4840-8369-700dac7a8f42" ChangeDateTime="08/15/2023 07:21:23">
+    <Property Name="ElementName" Value="[dbo].[Heo].[NguoiSua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UpdatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3e22217e-9428-46a9-a2ec-1f25ad56222f" ChangeDateTime="08/15/2023 07:22:42">
+    <Property Name="ElementName" Value="[dbo].[Heo].[LuaDe]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Delivery" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1c8ffb10-a38e-4dc5-b56d-88c80643d512" ChangeDateTime="08/15/2023 07:23:45">
+    <Property Name="ElementName" Value="[dbo].[Heo].[NguonGoc]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Source" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dd4e2a7f-6489-453c-adf6-c8d84cd2122c" ChangeDateTime="08/15/2023 07:24:31">
+    <Property Name="ElementName" Value="[dbo].[Heo].[Giong]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Species" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9dbf1cbb-9a33-471f-9c4f-ea5fecad1477" ChangeDateTime="08/15/2023 07:25:00">
+    <Property Name="ElementName" Value="[dbo].[Heo].[CapGiong]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BreedLevel" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="824a4883-22f6-4a13-bc02-13719252e915" ChangeDateTime="08/15/2023 07:26:27">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[TrongLuong]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Weight" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6781c558-caba-4695-b117-a69360de2a3d" ChangeDateTime="08/15/2023 07:26:37">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[GhiChu]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Note" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="68a47868-d50f-4223-aceb-6ab48dbe8803" ChangeDateTime="08/15/2023 07:26:44">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[NgayTao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6a53db50-cf69-4ba1-a61f-9bc2b2f569fe" ChangeDateTime="08/15/2023 07:26:48">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[NguoiTao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="083f4789-d9f2-4bd7-8d7c-8d7096a260f1" ChangeDateTime="08/15/2023 07:27:05">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[NgaySua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastUpdatedOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="55cd1ad7-3a53-41ff-a56e-1eb7f026135a" ChangeDateTime="08/15/2023 07:27:18">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[NguoiSua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastUpdatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4526675f-1333-4f1f-bada-1953c0f59092" ChangeDateTime="08/15/2023 07:27:54">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[NgayChet]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Date" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dac1f5f8-c3c0-4b68-aa3e-9868588c89c6" ChangeDateTime="08/15/2023 07:28:04">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[SoCon]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Quantity" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f6080ae4-b120-421d-9229-5936daaebb50" ChangeDateTime="08/15/2023 07:28:27">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[LyDoChet]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Reason" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dc1af72a-3fb9-4917-9f96-db009bc8c504" ChangeDateTime="08/15/2023 07:29:07">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[SoNgayNuoi]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DaysOfRearing" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="160f35d6-2dfe-458d-93fe-ede3daee6a10" ChangeDateTime="08/15/2023 07:29:43">
+    <Property Name="ElementName" Value="[dbo].[HeoConChetNuoi].[HeoId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[HeoConChetNuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndividualId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="25bd9ffd-b33e-4e93-bd78-8f79f2aad6fb" ChangeDateTime="08/15/2023 07:34:50">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[TrongLuong]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Weight" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4a5d5fd8-058c-4b27-b7e3-3c02484f8cf3" ChangeDateTime="08/15/2023 07:35:09">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[GiaMua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Price" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="937d655c-e56d-4798-94a8-38ded000b766" ChangeDateTime="08/15/2023 07:35:19">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[NguoiTao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2f6e74fd-fb21-4056-8c40-5b6165ef1c79" ChangeDateTime="08/15/2023 07:35:22">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[NgayTao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="29e5a355-7400-4581-8a06-b5ef92b6a7a0" ChangeDateTime="08/15/2023 07:35:33">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[NguoiSua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastUpdatedOn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1925f847-78dc-4f3c-b5b3-09252018f112" ChangeDateTime="08/15/2023 07:35:35">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[NgaySua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastUpdatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="93a1d952-ed34-496c-857f-3b7f696f87c6" ChangeDateTime="08/15/2023 07:36:42">
+    <Property Name="ElementName" Value="[dbo].[LichSuChuyenChuong].[TrongLuongVao]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LichSuChuyenChuong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WeightIn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c1eda09b-31e4-486a-be4a-c304a638ff1c" ChangeDateTime="08/15/2023 07:36:46">
+    <Property Name="ElementName" Value="[dbo].[LichSuChuyenChuong].[TrongLuongRa]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LichSuChuyenChuong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WeightOut" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ebfe70f6-2fcd-4702-bdb2-5de3e369e39f" ChangeDateTime="08/15/2023 07:36:59">
+    <Property Name="ElementName" Value="[dbo].[LichSuChuyenChuong].[HienTrangRa]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LichSuChuyenChuong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StatusOut" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f5491972-0bc0-45d8-85c9-2623bba80997" ChangeDateTime="08/15/2023 07:42:51">
+    <Property Name="ElementName" Value="[dbo].[LichSuChuyenChuong].[CanBoThucHien]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LichSuChuyenChuong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Executor" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9a4b2388-1c9e-40c5-8afe-4635458bf8f6" ChangeDateTime="08/15/2023 07:43:04">
+    <Property Name="ElementName" Value="[dbo].[LichSuChuyenChuong].[HeoId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LichSuChuyenChuong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndividualId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ca837262-0ee0-4fc2-8bd4-237fdda1eb8d" ChangeDateTime="08/15/2023 07:43:35">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[HeoId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndividualId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0e68e065-3df1-43ff-bbd5-8d038e588414" ChangeDateTime="08/15/2023 07:44:56">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[HienTrangLucNhapDan]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StatusWhenJoin" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2d255b0b-f99d-489c-b827-f325762f82e6" ChangeDateTime="08/15/2023 07:45:28">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[StatusWhenJoin]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StatusJoin" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="041d72cd-f5c6-4ca7-8cfe-0911c2868a53" ChangeDateTime="08/15/2023 07:46:01">
+    <Property Name="ElementName" Value="[dbo].[LichSuChuyenChuong].[StatusIn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LichSuChuyenChuong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StatusJoin" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9389856a-5814-446d-8530-1186082eb33d" ChangeDateTime="08/15/2023 07:46:04">
+    <Property Name="ElementName" Value="[dbo].[LichSuChuyenChuong].[DateIn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LichSuChuyenChuong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateJoin" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3bfa98a1-8775-401f-859d-a66dc5e1d6c9" ChangeDateTime="08/15/2023 07:46:37">
+    <Property Name="ElementName" Value="[dbo].[Heo].[UpdatedBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LatestUpdatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4caba184-13ec-461d-b3af-0763b3e8fcc9" ChangeDateTime="08/15/2023 07:47:36">
+    <Property Name="ElementName" Value="[dbo].[ChuyenHeoCon].[Loai]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ChuyenHeoCon]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Type" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="be39ffd8-888c-4d8e-b381-37c6ab8111a0" ChangeDateTime="08/15/2023 07:47:43">
+    <Property Name="ElementName" Value="[dbo].[ChuyenHeoCon].[SoCon]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ChuyenHeoCon]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Quantity" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ba20b4d7-58be-4396-85c7-e9d574445cae" ChangeDateTime="08/15/2023 07:47:45">
+    <Property Name="ElementName" Value="[dbo].[ChuyenHeoCon].[Ngay]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ChuyenHeoCon]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Date" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5a0df0cd-e45d-418d-8a12-245535d41ef6" ChangeDateTime="08/15/2023 07:49:21">
+    <Property Name="ElementName" Value="[dbo].[ChuyenHeoCon].[LyDo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ChuyenHeoCon]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Reason" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c70cf298-f0f7-459a-bc15-a62fb8c75fd9" ChangeDateTime="08/15/2023 07:50:20">
+    <Property Name="ElementName" Value="[dbo].[ChuyenHeoCon].[SonNgayTheoMe]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ChuyenHeoCon]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DaysToMother" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ca966979-9323-46e1-b1ab-a5d95abb71ad" ChangeDateTime="08/15/2023 07:50:36">
+    <Property Name="ElementName" Value="[dbo].[ChuyenHeoCon].[SinhSanId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ChuyenHeoCon]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ReproductionId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e634dde1-9179-49de-87a3-69a903e92667" ChangeDateTime="08/15/2023 07:50:48">
+    <Property Name="ElementName" Value="[dbo].[ChuyenHeoCon].[HeoId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ChuyenHeoCon]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndividualIdId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ac48dd5a-f3e4-4c7d-94c4-03803ab44f0b" ChangeDateTime="08/15/2023 07:50:57">
+    <Property Name="ElementName" Value="[dbo].[CaiSua].[HeoId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CaiSua]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndividualId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6b1417c8-011d-48c6-ab8b-af81d8f8d5f3" ChangeDateTime="08/15/2023 07:50:59">
+    <Property Name="ElementName" Value="[dbo].[CaiSua].[Ngay]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CaiSua]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Date" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b4c408aa-dcdc-49d5-ba7f-9fbcf7501036" ChangeDateTime="08/15/2023 07:51:14">
+    <Property Name="ElementName" Value="[dbo].[CaiSua].[SoCon]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CaiSua]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Quantity" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="38ed0c08-e91f-4f6c-a321-2e716d9c4509" ChangeDateTime="08/15/2023 07:51:19">
+    <Property Name="ElementName" Value="[dbo].[CaiSua].[TrongLuong]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CaiSua]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Weight" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="93a07fd5-d08d-43a8-8951-1a6756b8d8d7" ChangeDateTime="08/15/2023 07:51:22">
+    <Property Name="ElementName" Value="[dbo].[CaiSua].[GhiChu]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CaiSua]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Note" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="45934980-e91c-4320-b9e5-0573ce9150eb" ChangeDateTime="08/15/2023 07:51:27">
+    <Property Name="ElementName" Value="[dbo].[CaiSua].[LyDo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CaiSua]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Reason" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9cce738b-3bd5-46a3-9655-9a69c7a39dda" ChangeDateTime="08/15/2023 07:51:41">
+    <Property Name="ElementName" Value="[dbo].[CaiSua].[SonNgayTheoMe]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CaiSua]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DaysToMother" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f4a3e4db-6be9-4e19-bf22-6952af40d989" ChangeDateTime="08/15/2023 07:57:45">
+    <Property Name="ElementName" Value="[dbo].[ONuoi].[Ten]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ONuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bbe3b0d6-73f1-471c-a9cb-5d1a1ea49b8f" ChangeDateTime="08/15/2023 07:57:49">
+    <Property Name="ElementName" Value="[dbo].[ONuoi].[LoaiChuong]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ONuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Type" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3eae33d3-1f64-48bd-bfb5-e4a696f571c9" ChangeDateTime="08/15/2023 07:57:58">
+    <Property Name="ElementName" Value="[dbo].[ONuoi].[MoTa]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ONuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3a3bb1b0-cb2d-43ec-8cba-1a45e59be57d" ChangeDateTime="08/15/2023 07:58:01">
+    <Property Name="ElementName" Value="[dbo].[ONuoi].[DiaChi]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ONuoi]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Address" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="83efb5e0-88a2-4cc8-b94e-9f78f7bcb6e1" ChangeDateTime="08/15/2023 08:13:35">
+    <Property Name="ElementName" Value="[dbo].[XuatHeo].[GiaBanHeoThit]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[XuatHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AmountByHeoThit" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="835e6597-079f-4db6-a6c5-e19eedcdcf30" ChangeDateTime="08/15/2023 08:14:08">
+    <Property Name="ElementName" Value="[dbo].[XuatHeo].[AmountByHeoThit]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[XuatHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AmountByMeat" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="791b1712-db7f-432b-8a28-30628d353130" ChangeDateTime="08/15/2023 08:14:24">
+    <Property Name="ElementName" Value="[dbo].[XuatHeo].[GiaBanHeoGiong]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[XuatHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AmountByMeat" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2e7a5493-08d8-4f3e-89b6-021a1821a4d5" ChangeDateTime="08/15/2023 08:15:23">
+    <Property Name="ElementName" Value="[dbo].[XuatHeo].[AmountByMeat]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[XuatHeo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AmountBySpecie" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0b87275f-a508-432e-8ad4-29a746a783d4" ChangeDateTime="08/15/2023 08:27:32">
+    <Property Name="ElementName" Value="[dbo].[Heo].[TraiId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Heo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FarmId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="96d34057-be97-4a7c-925c-832568d55ef4" ChangeDateTime="08/15/2023 08:45:45">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[CanBoPhoi]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Executor" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="27ea8314-6277-4468-b4f8-19adc488902e" ChangeDateTime="08/15/2023 08:45:56">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[KetQuaGhiChu]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Note" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b6395c17-c39e-4274-8274-055d68cd9661" ChangeDateTime="08/15/2023 08:47:27">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[NgayDuKienDe]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EstimatedDueDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dcdee4d1-ecf7-4e34-b929-0b381040592d" ChangeDateTime="08/15/2023 08:51:13">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[NgayKham1]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateCheckup1" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="eeafadf1-0fea-4a76-8a55-4ce8e602ae9e" ChangeDateTime="08/15/2023 08:51:19">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[NgayKham2]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateCheckup2" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7d6d0ab0-b0bc-443b-804c-4aa8df4703fd" ChangeDateTime="08/15/2023 08:51:47">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[KetQuaKham1]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResultCheckup1" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b730893a-9d05-4c26-961f-859e3f9896a6" ChangeDateTime="08/15/2023 08:51:53">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[KetQuaKham2]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResultCheckup2" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="39f63186-10f7-428e-b187-2466e574b4da" ChangeDateTime="08/15/2023 08:51:57">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[CanBoKham1]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Executor" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e906cb06-0d49-4036-ae92-16110699dc5b" ChangeDateTime="08/15/2023 08:52:05">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[CanBoKham2]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExecutorCheckup2" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0af68be9-4c44-47df-87de-db962b8e3aaf" ChangeDateTime="08/15/2023 08:56:02">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[LuaDe]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NumberOfBirths" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="56284f90-ca3e-41fe-a5fb-a6f84a021278" ChangeDateTime="08/15/2023 08:56:12">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[LuaDe]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NumberOfBirths" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a6e7c70b-df11-4f13-ae58-8cae0571b7db" ChangeDateTime="08/15/2023 08:58:07">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[NgayCaiSua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateWean" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="48abfb2e-05fb-4b90-9c6a-4a02ba82276e" ChangeDateTime="08/15/2023 08:58:17">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[SoConCaiSua]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WeanQuantity" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b88b6e84-0c4e-4189-934d-3b5d211c8695" ChangeDateTime="08/15/2023 08:58:21">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[DateWean]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WeanDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="88c80b90-4507-4791-b591-b03776dfabb5" ChangeDateTime="08/15/2023 09:02:28">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[DeNuoi]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Remaining" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="08134a58-03f0-4be4-98be-42b154c64d6b" ChangeDateTime="08/15/2023 09:03:01">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[NgayDe]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BirtDay" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8d812619-e0c0-4715-bba7-261957ced0c5" ChangeDateTime="08/15/2023 09:03:28">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[HeoId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndividualId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ad015f54-1ea1-40ea-af5f-d0c8f506831e" ChangeDateTime="08/15/2023 09:04:25">
+    <Property Name="ElementName" Value="[dbo].[PhoiGiong].[HeoDucId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoiGiong]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndividualMaleId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9e914844-a700-4107-a230-90590f6fcc5f" ChangeDateTime="08/15/2023 09:05:02">
+    <Property Name="ElementName" Value="[dbo].[NguonGoc].[TraiNhap]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NguonGoc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FarmExport" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="28cd30d8-9811-425f-bbb4-3974464d517e" ChangeDateTime="08/15/2023 09:06:58">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[BirtDay]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Date" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="456812b0-07bc-4bbc-9a0d-15c43f77f00e" ChangeDateTime="08/15/2023 09:33:12">
+    <Property Name="ElementName" Value="[dbo].[SinhSan].[SoDiTat]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SinhSan]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Defects" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4f960fbf-ab2e-48c1-b1a3-cac846fc042e" ChangeDateTime="08/15/2023 10:11:52">
+    <Property Name="ElementName" Value="[dbo].[Animal].[TimeJoinIn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Animal]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateJoinIn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5eac49e9-2fa5-4f70-9eaa-d933ac7908a2" ChangeDateTime="08/15/2023 10:12:00">
+    <Property Name="ElementName" Value="[dbo].[Animal].[TimeLeave]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Animal]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateLeave" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="735247db-f74b-4a30-a0ed-56a16ba07b82" ChangeDateTime="08/15/2023 10:21:38">
+    <Property Name="ElementName" Value="[dbo].[AnimalChild].[Mother]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[AnimalChild]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MotherId" />
+  </Operation>
+</Operations>

@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[UserTenants]
+(
+	[UserId] BIGINT NOT NULL FOREIGN KEY REFERENCES Users(Id),
+	[TenantId] BIGINT NOT NULL,
+	[IsActive] BIT NOT NULL DEFAULT 0,
+)
