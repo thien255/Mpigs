@@ -1,5 +1,5 @@
 ﻿using App.Auth.DTO;
-using App.Auth.Models;
+using DAL.Models.Tenant;
 
 namespace App.Auth.Business
 {

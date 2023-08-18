@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Contexts\" />
+    <Folder Include="Models\Tenant\" />
   </ItemGroup>
 
   <ItemGroup>

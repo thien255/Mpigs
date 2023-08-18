@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>AppAuthen</Name>
+    <Name>Tenant</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{f80e399b-01e6-428d-9d42-e44d19cbad5e}</ProjectGuid>
@@ -44,6 +44,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <SqlTargetName>Tenant</SqlTargetName>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -55,6 +56,7 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Table" />
+    <Folder Include="StoreProcedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Table\Users.sql" />
@@ -67,6 +69,11 @@
     <Build Include="Table\District.sql" />
     <Build Include="Table\Tenant.sql" />
     <Build Include="Table\UserTenants.sql" />
+    <Build Include="StoreProcedures\USP_Get_UserPaging.sql" />
+    <Build Include="StoreProcedures\USP_Get_UserRole.sql" />
+    <Build Include="StoreProcedures\USP_Get_UserTenant.sql" />
+    <Build Include="StoreProcedures\USP_Get_RolePaging.sql" />
+    <Build Include="StoreProcedures\USP_Get_TenantPaging.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AppAuthen.refactorlog" />

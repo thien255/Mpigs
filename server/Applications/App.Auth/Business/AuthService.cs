@@ -8,18 +8,18 @@ using System.Text;
 namespace App.Auth.Business
 {
     using App.Auth.DTO;
-    using App.Auth.Models;
     using BCrypt.Net;
-    using Microsoft.AspNetCore.Identity;
+    using DAL.Contexts;
+    using DAL.Models.Tenant;
     using Microsoft.EntityFrameworkCore;
     using System.Security.Cryptography;
 
     public class AuthService : IAuthService
     {
 
-        private readonly AppAuthContext _dbContext;
+        private readonly TenantDbContext _dbContext;
         private readonly IConfiguration _configuration;
-        public AuthService(AppAuthContext dbContext, IConfiguration configuration)
+        public AuthService(TenantDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;
             _configuration = configuration;
@@ -27,8 +27,8 @@ namespace App.Auth.Business
 
         public async Task<SignRespon?> SignAsync(string email, string password)
         {
-            User? user = await _dbContext.Users.FirstOrDefaultAsync(x => x.UserName == email);
-            
+            DAL.Models.Tenant.User? user = await _dbContext.Users.FirstOrDefaultAsync(x => x.UserName == email);
+
             if (user == null || BCrypt.Verify(password, user.Password) == false)
             {
                 return null; //returning null intentionally to show that login was unsuccessful
@@ -44,7 +44,7 @@ namespace App.Auth.Business
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Name ?? ""),
+                    new Claim(ClaimTypes.Name, user.FullName ?? ""),
                     new Claim(ClaimTypes.Email, string.IsNullOrEmpty(user.Email) ? "" : user.Email),
                     new Claim(ClaimTypes.GivenName, string.IsNullOrEmpty(user.UserName) ? "" : user.UserName),
                     new Claim(ClaimTypes.Expired,expired.ToUnixTimeSeconds().ToString())
@@ -58,7 +58,7 @@ namespace App.Auth.Business
 
             foreach (var role in roles)
             {
-                tokenDescriptor.AdditionalHeaderClaims.Add(role.RoleId, role.RoleId);
+                tokenDescriptor.AdditionalHeaderClaims.Add(role.Role, role.Role);
             }
 
 
@@ -69,7 +69,7 @@ namespace App.Auth.Business
             var result = new SignRespon
             {
                 Id = user.UserName,
-                Name = user.Name,
+                Name = user.FullName,
                 Email = user.UserName,
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
@@ -77,7 +77,7 @@ namespace App.Auth.Business
                 AccessTokenExpires = ((DateTimeOffset)token.ValidTo).ToUnixTimeSeconds()
             };
             _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInDays"], out int refreshtokenValidityInDays);
-            _ = AddLog(new SignLog
+            _ = AddLog(new Logged
             {
                 UserName = user.UserName,
                 AccessToken = accessToken,
@@ -107,7 +107,7 @@ namespace App.Auth.Business
 
             string username = principal.Identity?.Name ?? "";
 
-            var signLog = await _dbContext.SignLogs.FirstOrDefaultAsync(x => x.UserName == username && x.AccessToken == accessToken && x.RefreshToken == refreshToken);
+            var signLog = await _dbContext.Loggeds.FirstOrDefaultAsync(x => x.UserName == username && x.AccessToken == accessToken && x.RefreshToken == refreshToken);
 
             if (signLog == null || signLog.RefreshToken != refreshToken || signLog.RefreshTokenExpiryTime <= DateTime.Now)
             {
@@ -119,7 +119,7 @@ namespace App.Auth.Business
 
             signLog.RefreshToken = newRefreshToken;
             signLog.AccessToken = newAccessToken;
-            _dbContext.SignLogs.Update(signLog);
+            _dbContext.Loggeds.Update(signLog);
             await _dbContext.SaveChangesAsync();
             return new TokenModel()
             {
@@ -149,10 +149,10 @@ namespace App.Auth.Business
 
         }
 
-        private async Task AddLog(SignLog signLog)
+        private async Task AddLog(Logged signLog)
         {
-            signLog.LoginTime = DateTime.Now;
-            await _dbContext.SignLogs.AddAsync(signLog);
+            signLog.CreatedOn = DateTime.Now;
+            await _dbContext.Loggeds.AddAsync(signLog);
             await _dbContext.SaveChangesAsync();
         }
         private static string GenerateRefreshToken()

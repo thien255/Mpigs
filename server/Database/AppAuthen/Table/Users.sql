@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Users]
 (
-	[Id] BIGINT NOT NULL PRIMARY KEY, 
+	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [UserName] VARCHAR(50) NOT NULL, 
     [Password] VARCHAR(MAX) NULL, 
     [FullName] NVARCHAR(60) NULL, 
@@ -11,9 +11,12 @@
     [PhoneNumber] VARCHAR(20) NULL, 
     [PhoneNumberConfirmed] BIT NULL, 
     [TwoFactorEnabled] BIT NULL DEFAULT 0, 
+    [LockoutEnabled] BIT NULL,
     [Culture] VARCHAR(20) NULL, 
     [IsActive] BIT NOT NULL, 
     [IsDelete] BIT NULL DEFAULT 0, 
     [CreatedOn] DATETIME NOT NULL DEFAULT GETDATE(), 
-    [LatestUpdatedOn] DATETIME NULL
+    [CreatedBy] NVARCHAR(60) NULL,
+    [LatestUpdatedOn] DATETIME NULL,
+    [LatestUpdatedBy] NVARCHAR(60) NULL 
 )

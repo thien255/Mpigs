@@ -63,7 +63,6 @@ const jwt = async ({ token, user }: { token: JWT; user?: User }) => {
   if (user?.email) {
     return { ...token, ...user };
   }
-
   // on subsequent calls, token is provided and we need to check if it's expired
   if (token?.accessTokenExpires) {
     if (Date.now() / 1000 < token?.accessTokenExpires)
@@ -139,9 +138,8 @@ const authOptions: AuthOptions = {
         };
 
         const res = await fetch(process.env.AUTH_API + "/Auth/Sign", options);
-
         const user = await res.json();
-
+        console.log(user);
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
           return user;

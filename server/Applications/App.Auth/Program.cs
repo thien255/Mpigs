@@ -1,14 +1,18 @@
 using App.Auth.Business;
-using App.Auth.Models;
+using DAL.Contexts;
+using DAL.Models.Tenant;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using NSwag; 
+using NSwag;
 using System.Text;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-builder.Services.AddDbContext<AppAuthContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("App.Auth")));
+builder.Services.AddDbContext<TenantDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("App.Auth")));
+
 
 builder.Services.AddCors(options =>
 {
@@ -26,6 +30,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddAuthentication(opt =>
 {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -97,4 +102,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
- 
+
