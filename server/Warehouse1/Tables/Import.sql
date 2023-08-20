@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Export]
+﻿CREATE TABLE [dbo].[Import]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1),   
     [CateId] BIGINT NOT NULL FOREIGN KEY REFERENCES Categories(Id), 

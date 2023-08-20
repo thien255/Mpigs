@@ -4,7 +4,6 @@ using DAL.Models.Tenant;
 using Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.WebSockets;
 
 namespace App.Auth.Controllers
 {

@@ -1,7 +1,7 @@
-﻿CREATE TABLE [dbo].[WareHouse]
+﻿CREATE TABLE [dbo].[Kho]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
-    [FarmId] BIGINT NOT NULL, 
+    [TraiId] BIGINT NOT NULL, 
     [CateId] BIGINT NOT NULL FOREIGN KEY REFERENCES Categories(Id), 
     [TotalImport] DECIMAL(18, 2) NOT NULL,
     [TotalExport] DECIMAL(18, 2) NOT NULL,
