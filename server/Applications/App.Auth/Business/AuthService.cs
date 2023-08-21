@@ -8,9 +8,11 @@ using System.Text;
 namespace App.Auth.Business
 {
     using App.Auth.DTO;
+    using Azure.Core;
     using BCrypt.Net;
     using DAL.Contexts;
     using DAL.Models.Tenant;
+    using IdentityServer4.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Security.Cryptography;
 
@@ -37,9 +39,9 @@ namespace App.Auth.Business
             List<UserRole> roles = await _dbContext.UserRoles.Where(x => x.UserId == user.Id).ToListAsync();
 
 
-            var key = Encoding.ASCII.GetBytes(_configuration["JWT:SecretKey"] ?? "");
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity();
-            DateTimeOffset expired = new DateTimeOffset(DateTime.UtcNow.AddMinutes(30));
+            var key = Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"] ?? "");
+            
+            var expired = new DateTimeOffset(DateTime.UtcNow.AddMinutes(30));
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -49,16 +51,17 @@ namespace App.Auth.Business
                     new Claim(ClaimTypes.GivenName, string.IsNullOrEmpty(user.UserName) ? "" : user.UserName),
                     new Claim(ClaimTypes.Expired,expired.ToUnixTimeSeconds().ToString())
                 }),
-                IssuedAt = DateTime.UtcNow,
+                //IssuedAt = DateTime.UtcNow,
                 Issuer = _configuration["JWT:Issuer"],
                 Audience = _configuration["JWT:Audience"],
                 Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Claims = new Dictionary<string,object>()
             };
 
             foreach (var role in roles)
             {
-                tokenDescriptor.AdditionalHeaderClaims.Add(role.Role, role.Role);
+                tokenDescriptor.Claims.Add(role.Role, role.Role);
             }
 
 
@@ -88,13 +91,17 @@ namespace App.Auth.Business
             return result;
         }
 
-        public async Task<User> Register(User user)
+        public async Task<User?> Register(User user)
         {
-            user.Password = BCrypt.HashPassword(user.Password).ToString();
-            _dbContext.Users.Add(user);
-            await _dbContext.SaveChangesAsync();
-
-            return user;
+            var checkExist = await _dbContext.Users.AnyAsync(u => u.UserName == user.UserName);
+            if (checkExist)
+            {
+                user.Password = BCrypt.HashPassword(user.Password).ToString();
+                _dbContext.Users.Add(user);
+                await _dbContext.SaveChangesAsync();
+                return user;
+            }
+            return null;
         }
 
         public async Task<TokenModel?> RefreshToken(string accessToken, string refreshToken)
@@ -133,11 +140,13 @@ namespace App.Auth.Business
         {
             var tokenValidationParameters = new TokenValidationParameters
             {
-                ValidateAudience = false,
-                ValidateIssuer = false,
+                ValidateAudience = true,
+                ValidateIssuer = true,
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"] ?? "")),
-                ValidateLifetime = false
+                ValidateLifetime = true,
+                ValidIssuer = _configuration["JWT:Issuer"] ?? "",
+                ValidAudience = _configuration["JWT:Audience"] ?? ""
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();

@@ -16,9 +16,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 const DropdownUser = () => {
-  const [userName, setUserName] = useState("");
   const { data: session } = useSession();
-  console.log(session);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

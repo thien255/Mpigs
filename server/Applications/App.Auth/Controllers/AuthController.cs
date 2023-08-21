@@ -14,14 +14,11 @@ namespace App.Auth.Controllers
     {
         private readonly ILogger<AuthController> _logger;
         private readonly IAuthService _authService;
-        private readonly SignInManager<User> _signInManager;
 
-        public AuthController(ILogger<AuthController> logger, IAuthService authService, SignInManager<User> signInManager,
-            UserManager<User> userManager)
+        public AuthController(ILogger<AuthController> logger, IAuthService authService)
         {
             _logger = logger;
             _authService = authService;
-            _signInManager = signInManager;
         }
 
 
@@ -30,24 +27,33 @@ namespace App.Auth.Controllers
         [HttpPost]
         public async Task<IActionResult> Sign([FromBody] SignForm user)
         {
-            if (string.IsNullOrEmpty(user.UserName))
+            try
             {
-                return BadRequest(new { message = "Email address needs to entered" });
+                if (string.IsNullOrEmpty(user.UserName))
+                {
+                    return BadRequest(new { message = "Email address needs to entered" });
+                }
+                else if (string.IsNullOrEmpty(user.Password))
+                {
+                    return BadRequest(new { message = "Password needs to entered" });
+                }
+
+                SignRespon? loggedInUser = await _authService.SignAsync(user.UserName, user.Password);
+
+                if (loggedInUser != null)
+                {
+
+                    return Ok(loggedInUser);
+                }
+
+                return BadRequest(new { message = "User login unsuccessful" });
             }
-            else if (string.IsNullOrEmpty(user.Password))
+            catch (Exception ex)
             {
-                return BadRequest(new { message = "Password needs to entered" });
+                _logger.LogError("/Auth/Sign", ex);
+                return BadRequest();
             }
 
-            SignRespon? loggedInUser = await _authService.SignAsync(user.UserName, user.Password);
-
-            if (loggedInUser != null)
-            {
-
-                return Ok(loggedInUser);
-            }
-
-            return BadRequest(new { message = "User login unsuccessful" });
         }
 
 
@@ -56,11 +62,7 @@ namespace App.Auth.Controllers
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegisterUser user)
         {
-            if (string.IsNullOrEmpty(user.Name))
-            {
-                return BadRequest(new { message = "Name needs to entered" });
-            }
-            else if (string.IsNullOrEmpty(user.UserName))
+            if (string.IsNullOrEmpty(user.UserName))
             {
                 return BadRequest(new { message = "User name needs to entered" });
             }
@@ -69,21 +71,24 @@ namespace App.Auth.Controllers
                 return BadRequest(new { message = "Password needs to entered" });
             }
 
-            DAL.Models.Tenant.User userToRegister = new DAL.Models.Tenant.User()
+            User userToRegister = new User()
             {
                 UserName = user.UserName,
                 FullName = user.UserName,
                 Password = user.Password,
             };
 
-            DAL.Models.Tenant.User registeredUser = await _authService.Register(userToRegister);
-
-            SignRespon? loggedInUser = await _authService.SignAsync(registeredUser.UserName ?? "", user.Password ?? "");
-
-            if (loggedInUser != null)
+            var registeredUser = await _authService.Register(userToRegister);
+            if (registeredUser != null)
             {
-                return Ok(loggedInUser);
+                SignRespon? loggedInUser = await _authService.SignAsync(registeredUser.UserName ?? "", user.Password ?? "");
+
+                if (loggedInUser != null)
+                {
+                    return Ok(loggedInUser);
+                }
             }
+            
 
             return BadRequest(new { message = "User registration unsuccessful" });
         }

@@ -39,15 +39,17 @@ builder.Services.AddAuthentication(opt =>
 .AddJwtBearer(opt =>
 {   // for development only
     opt.RequireHttpsMetadata = false;
-    opt.SaveToken = true;
+    opt.SaveToken = true; 
     opt.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JWT:SecretKey"] ?? "")),
-        ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["JWT:Issuer"],
+        ValidateLifetime = false,
+        ClockSkew = TimeSpan.Zero,
         ValidateAudience = true,
-        ValidAudience = builder.Configuration["JWT:Audience"]
+        ValidateIssuer = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"] ?? "")),
+        ValidIssuer = builder.Configuration["JWT:Issuer"],
+        ValidAudience = builder.Configuration["JWT:ValidAudience"],
     };
 });
 

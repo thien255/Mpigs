@@ -24,10 +24,9 @@ namespace App.Auth.Controllers
         // GET: Tenant/Manage
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Manage()
-        {
-
-            return Ok();
+        public async Task<DataPagingResult<Tenant>> Manage(TenantRequest entity)
+        { 
+           return await _tenantService.Paging(entity); 
         }
 
 

@@ -36,7 +36,7 @@ const DropdownSetting = () => {
               </div>
             </Link>
             <Link
-              href="#"
+              href="/tenant"
               className="block py-3 text-center rounded-2xl hover:bg-gray-100"
             >
               <div className="p-1">

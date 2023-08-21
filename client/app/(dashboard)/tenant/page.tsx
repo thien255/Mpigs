@@ -82,19 +82,7 @@ export default function NewTanent() {
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    const options = {
-      method: "POST",
-      body: JSON.stringify(data),
-    };
-
-    fetch("/api/tenant", options)
-      .then((res) => {
-        alert("Thành công");
-        console.log(res);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    console.log(data);
   }
 
   return (
@@ -102,9 +90,20 @@ export default function NewTanent() {
       <div className="w-full max-w-full px-3 m-auto flex-0  h-full">
         <Card>
           <CardHeader>
-            <CardTitle className="relative text-transparent bg-clip-text bg-gradient-cyan z-1 font-bold text-2xl dark:text-white">
-              Thêm mới thuê bao
-            </CardTitle>
+            <div className="flex">
+              <div className="flex-1 flex align-items-center">
+                <CardTitle className="relative text-transparent bg-clip-text bg-gradient-cyan z-1 font-bold text-xl dark:text-white">
+                  Danh sách thuê bao
+                </CardTitle>
+              </div>
+              <div>
+                <Link href="/tenant/new">
+                  <Button className="bg-gradient-cyan font-medium">
+                    Thêm mới
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
             <Form {...form}>
@@ -113,22 +112,20 @@ export default function NewTanent() {
                 method="post"
                 className="flex flex-col gap-2 xl:grap-3 2xl:gap-4"
               >
-                <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 xl:grap-3 2xl:gap-4">
+                <div className="grid lg:grid-cols-2 2xl:grid-cols-5 gap-2 xl:grap-3 2xl:gap-4">
                   <FormField
                     control={form.control}
                     name="Type"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Quy mô <span className="text-rose-600">*</span>
-                        </FormLabel>
+                        <FormLabel>Quy mô</FormLabel>
                         <FormControl>
                           <Select
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <SelectTrigger>
-                              <SelectValue placeholder="Chọn loại đơn vị để xác định quy mô doanh nghiệp" />
+                              <SelectValue placeholder="Chọn một giá trị" />
                             </SelectTrigger>
                             <SelectContent className="w-full">
                               <SelectItem value="1">Tập đoàn</SelectItem>
@@ -144,71 +141,10 @@ export default function NewTanent() {
 
                   <FormField
                     control={form.control}
-                    name="Code"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Mã <span className="text-rose-600">*</span>
-                        </FormLabel>
-                        <FormControl>
-                          <Input placeholder="vd: LOCPHAT" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          Chỉ cho phép ký tự hoặc số, tối đa 50 ký tự.
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 xl:grap-3 2xl:gap-4">
-                  <FormField
-                    control={form.control}
-                    name="Name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Tên <span className="text-rose-600">*</span>
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="vd: Công ty chăn nuôi Lộc Phát"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormDescription>Tối đa 150 ký tự.</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="ShortName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Nhãn <span className="text-rose-600">*</span>
-                        </FormLabel>
-                        <FormControl>
-                          <Input placeholder="vd: Lộc Phát" {...field} />
-                        </FormControl>
-                        <FormDescription>Tối đa 60 ký tự.</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 xl:grap-3 2xl:gap-4">
-                  <FormField
-                    control={form.control}
                     name="License"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Giấy phép <span className="text-rose-600">*</span>
-                        </FormLabel>
+                        <FormLabel>Giấy phép</FormLabel>
                         <FormControl>
                           <Select
                             onValueChange={field.onChange}
@@ -258,7 +194,7 @@ export default function NewTanent() {
                                   <Button
                                     variant={"outline"}
                                     className={cn(
-                                      "w-[240px] pl-3 text-left font-normal",
+                                      "w-full pl-3 text-left font-normal",
                                       !field.value && "text-muted-foreground"
                                     )}
                                   >
@@ -290,103 +226,28 @@ export default function NewTanent() {
                       </FormItem>
                     )}
                   />
-                </div>
-                <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 xl:grap-3 2xl:gap-4">
-                  <FormField
-                    control={form.control}
-                    name="Representative"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Người đại diện</FormLabel>
-                        <FormControl>
-                          <Input placeholder="vd: Nguyễn Văn A" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
 
                   <FormField
                     control={form.control}
-                    name="Phone"
+                    name="Code"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Số điện thoại</FormLabel>
+                        <FormLabel>Tìm kiếm</FormLabel>
                         <FormControl>
-                          <Input placeholder="vd: 0987654321" {...field} />
+                          <Input placeholder="vd: LOCPHAT" {...field} />
                         </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="Tax"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Mã số thuế</FormLabel>
-                        <FormControl>
-                          <Input placeholder="vd: xxxxxxxxxxx" {...field} />
-                        </FormControl>
+                        <FormDescription>
+                          <small>
+                            Chỉ cho phép ký tự hoặc số, tối đa 50 ký tự.
+                          </small>
+                        </FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
 
-                <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 xl:grap-3 2xl:gap-4">
-                  <FormField
-                    control={form.control}
-                    name="Address"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Địa chỉ</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="vd: Quận Hoàn Kiếm, TP Hà Nội"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <FormField
-                  control={form.control}
-                  name="IsActive"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Trạng thái</FormLabel>
-                      <FormControl>
-                        <div className="flex items-center space-x-2">
-                          <Switch
-                            id="isActive"
-                            className="bg-sky-500"
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                          <Label htmlFor="isActive">
-                            {field.value ? "Kích hoạt" : "Không kích hoạt"}
-                          </Label>
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 xl:grap-3 2xl:gap-4">
-                  <Button className="bg-gradient-cyan font-medium">
-                    <Check className="mr-2 h-4 w-4" /> Thêm mới
-                  </Button>
-                  <Link href="/tenant">
-                    <Button className="bg-secondary text-black font-medium">
-                      Quy lại
-                    </Button>
-                  </Link>
-                </div>
+                <div className="grid lg:grid-cols-2 2xl:grid-cols-5 gap-2 xl:grap-3 2xl:gap-4"></div>
               </form>
             </Form>
           </CardContent>
