@@ -12,7 +12,6 @@ export async function POST(req: Request, { params }: { params: any }) {
       },
       body: JSON.stringify(body),
     };
-    console.log(process.env.AUTH_API + "/Auth/Register");
     const res = await fetch(process.env.AUTH_API + "/Auth/Register", options);
     const data = await res.json();
     return NextResponse.json(data);

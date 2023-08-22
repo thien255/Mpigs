@@ -1,7 +1,6 @@
 import Router from "next/router";
 import { getServerSession } from "next-auth/next";
 import authOptions from "@/api/auth/[...nextauth]/authOptions";
-import { Session } from "inspector";
 export const httpHelper = {
   get,
   post,
@@ -21,11 +20,8 @@ async function post(url: string, body: any) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json", ...(await authHeader(url)) },
-    credentials: "include",
     body: JSON.stringify(body),
   };
-  console.log(url);
-  console.log(requestOptions);
   return fetch(url, requestOptions as RequestInit).then(handleResponse);
 }
 
@@ -53,7 +49,6 @@ async function _delete(url: string) {
 async function authHeader(url: string) {
   // return auth header with jwt if user is logged in and request is to the api url
   const user = await getServerSession(authOptions);
-
   const isLoggedIn = user && user.token;
   if (isLoggedIn) {
     return { Authorization: `Bearer ${user.token}` };
@@ -65,18 +60,18 @@ async function authHeader(url: string) {
 function handleResponse(response: Response) {
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
-
-    if (!response.ok) {
-      console.log(response);
+    if (response.status !== 200) {
       if ([401, 403].includes(response.status)) {
         // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
         console.log("Authen");
+        getServerSession(authOptions).then((res) => {
+          console.log(res);
+        });
       }
 
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
-
     return data;
   });
 }

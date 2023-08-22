@@ -8,12 +8,13 @@ using System.Text;
 namespace App.Auth.Business
 {
     using App.Auth.DTO;
-    using Azure.Core;
+    using App.Auth.Helper;
     using BCrypt.Net;
     using DAL.Contexts;
     using DAL.Models.Tenant;
-    using IdentityServer4.Models;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using System;
     using System.Security.Cryptography;
 
     public class AuthService : IAuthService
@@ -37,38 +38,22 @@ namespace App.Auth.Business
             }
 
             List<UserRole> roles = await _dbContext.UserRoles.Where(x => x.UserId == user.Id).ToListAsync();
-
-
-            var key = Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"] ?? "");
-            
-            var expired = new DateTimeOffset(DateTime.UtcNow.AddMinutes(30));
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.FullName ?? ""),
-                    new Claim(ClaimTypes.Email, string.IsNullOrEmpty(user.Email) ? "" : user.Email),
-                    new Claim(ClaimTypes.GivenName, string.IsNullOrEmpty(user.UserName) ? "" : user.UserName),
-                    new Claim(ClaimTypes.Expired,expired.ToUnixTimeSeconds().ToString())
-                }),
-                //IssuedAt = DateTime.UtcNow,
-                Issuer = _configuration["JWT:Issuer"],
-                Audience = _configuration["JWT:Audience"],
-                Expires = DateTime.UtcNow.AddMinutes(30),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-                Claims = new Dictionary<string,object>()
+            var claims = new List<Claim>() {
+                new Claim(ClaimTypes.Name, user.FullName ?? ""),
+                new Claim(ClaimTypes.Email, string.IsNullOrEmpty(user.Email) ? "" : user.Email),
+                new Claim(ClaimTypes.GivenName, string.IsNullOrEmpty(user.UserName) ? "" : user.UserName)
             };
-
             foreach (var role in roles)
             {
-                tokenDescriptor.Claims.Add(role.Role, role.Role);
+                claims.Add(new Claim(ClaimTypes.Role, role.Role));
             }
 
-
             var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            var jwtSecurityToken = CreateJwtSecurityToken(claims);
             var refreshToken = GenerateRefreshToken();
-            var accessToken = tokenHandler.WriteToken(token);
+            var accessToken = tokenHandler.WriteToken(jwtSecurityToken);
+
             var result = new SignRespon
             {
                 Id = user.UserName,
@@ -76,17 +61,17 @@ namespace App.Auth.Business
                 Email = user.UserName,
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
-                Expiration = token.ValidTo,
-                AccessTokenExpires = ((DateTimeOffset)token.ValidTo).ToUnixTimeSeconds()
+                Expiration = jwtSecurityToken.ValidTo,
+                AccessTokenExpires = ((DateTimeOffset)jwtSecurityToken.ValidTo).ToUnixTimeSeconds()
             };
-            _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInDays"], out int refreshtokenValidityInDays);
+            
             _ = AddLog(new Logged
             {
                 UserName = user.UserName,
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
-                RefreshTokenExpiryTime = DateTime.Now.AddDays(refreshtokenValidityInDays),
-                ExpTime = expired.UtcDateTime
+                RefreshTokenExpiryTime = DateTime.Now.AddDays(_configuration.GetValue<int>("JWT:RefreshTokenValidityInDays")),
+                ExpTime = jwtSecurityToken.ValidTo
             });
             return result;
         }
@@ -121,9 +106,10 @@ namespace App.Auth.Business
                 return null;
             }
 
-            var newAccessToken = CreateToken(principal.Claims.ToList());
+            var jwtSecurityToken = CreateJwtSecurityToken(principal.Claims.ToList());
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var newAccessToken = tokenHandler.WriteToken(jwtSecurityToken);
             var newRefreshToken = GenerateRefreshToken();
-
             signLog.RefreshToken = newRefreshToken;
             signLog.AccessToken = newAccessToken;
             _dbContext.Loggeds.Update(signLog);
@@ -141,12 +127,12 @@ namespace App.Auth.Business
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateAudience = true,
+                ValidAudience = _configuration["JWT:Audience"] ?? "",
                 ValidateIssuer = true,
+                ValidIssuer = _configuration["JWT:Issuer"] ?? "",
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"] ?? "")),
-                ValidateLifetime = true,
-                ValidIssuer = _configuration["JWT:Issuer"] ?? "",
-                ValidAudience = _configuration["JWT:Audience"] ?? ""
+                ValidateLifetime = true
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -171,26 +157,18 @@ namespace App.Auth.Business
             rng.GetBytes(randomNumber);
             return Convert.ToBase64String(randomNumber);
         }
-        private string CreateToken(List<Claim> claim)
+        private JwtSecurityToken CreateJwtSecurityToken(List<Claim> claim)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration["JWT:SecretKey"] ?? "");
-            _ = int.TryParse(_configuration["JWT:TokenValidityInMinutes"], out int tokenValidityInMinutes);
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"] ?? ""));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var claimIdentity = new ClaimsIdentity(claim);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = claimIdentity,
-                IssuedAt = DateTime.UtcNow,
-                Issuer = _configuration["JWT:Issuer"],
-                Audience = _configuration["JWT:Audience"],
-                Expires = DateTime.UtcNow.AddMinutes(tokenValidityInMinutes),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var accessToken = tokenHandler.WriteToken(token);
-            return accessToken;
+            return new JwtSecurityToken(
+               issuer: _configuration["JWT:Issuer"],
+               audience: _configuration["JWT:Audience"],
+               expires: DateTime.Now.Add(TimeSpan.FromMinutes(_configuration.GetValue<int>("JWT:TokenValidityInMinutes"))),
+               claims: claim,
+               signingCredentials: creds
+            );
         }
 
     }

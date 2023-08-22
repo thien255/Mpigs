@@ -51,14 +51,26 @@ namespace App.Auth.Business
 
         public async Task<ResultBase<Tenant>> Add(Tenant entity)
         {
-            await _tenantDbContext.AddAsync(entity);
-            await _tenantDbContext.SaveChangesAsync();
-            return new ResultBase<Tenant>
+            if(!await _tenantDbContext.Tenants.AnyAsync(x => x.Code == entity.Code)){
+                await _tenantDbContext.AddAsync(entity);
+                await _tenantDbContext.SaveChangesAsync();
+                return new ResultBase<Tenant>
+                {
+                    Code = "00",
+                    Message = "Success",
+                    Data = entity
+                };
+            }
+            else
             {
-                Code = "00",
-                Message = "Success",
-                Data = entity
-            };
+                return new ResultBase<Tenant>
+                {
+                    Code = "400",
+                    Message = "Thuê bao này đã tồn tại trên hệ thống",
+                    Data = entity
+                };
+            }
+               
         }
 
         public async Task<ResultBase<Tenant>> Update(Tenant entity)

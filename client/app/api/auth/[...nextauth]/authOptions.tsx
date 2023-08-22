@@ -12,17 +12,18 @@ async function refreshAccessToken(tokenObject: any) {
         refreshToken: tokenObject.refreshToken,
       }),
     };
-
     const res = await fetch(
       process.env.AUTH_API + "/Auth/RefreshToken",
       options
     );
-
     if (res.status != 200) {
-      throw new Error("Invalid credentials");
+      return {
+        ...{},
+        error: "Invalid credentials",
+      };
     }
-    const tokenResponse = await res.json();
 
+    const tokenResponse = await res.json();
     return {
       ...tokenObject,
       accessToken: tokenResponse.accessToken,
@@ -32,7 +33,7 @@ async function refreshAccessToken(tokenObject: any) {
   } catch (error) {
     return {
       ...tokenObject,
-      error: error,
+      error: "RefreshAccessTokenError",
     };
   }
 }
@@ -59,15 +60,19 @@ const cookies: Partial<CookiesOptions> = {
 };
 
 const jwt = async ({ token, user }: { token: JWT; user?: User }) => {
+  console.log(token);
   // first call of jwt function just user object is provided
   if (user?.email) {
     return { ...token, ...user };
   }
   // on subsequent calls, token is provided and we need to check if it's expired
   if (token?.accessTokenExpires) {
-    if (Date.now() / 1000 < token?.accessTokenExpires)
-      return { ...token, ...user };
-  } else if (token?.refreshToken) return refreshAccessToken(token);
+    let number = Date.now() / 1000 > token?.accessTokenExpires;
+    console.log("accessTokenExpires: " + number);
+    if (Date.now() / 1000 > token?.accessTokenExpires) {
+      return refreshAccessToken(token);
+    }
+  }
 
   return { ...token, ...user };
 };
@@ -92,8 +97,7 @@ const session = ({
   }
   if (
     Date.now() / 1000 > token?.accessTokenExpires &&
-    token?.refreshTokenExpires &&
-    Date.now() / 1000 > token?.refreshTokenExpires
+    token?.refreshTokenExpires
   ) {
     return Promise.reject({
       error: new Error(

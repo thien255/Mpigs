@@ -2,13 +2,14 @@ using App.Auth.Business;
 using App.Auth.DTO;
 using DAL.Models.Tenant;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace App.Auth.Controllers
 {
     [ApiController]
+    //[Route("[controller]/[action]")]
+    
     [Route("[controller]/[action]")]
     public class AuthController : ControllerBase
     {
@@ -23,7 +24,7 @@ namespace App.Auth.Controllers
 
 
         // POST: auth/login
-        [AllowAnonymous]
+       
         [HttpPost]
         public async Task<IActionResult> Sign([FromBody] SignForm user)
         {
@@ -57,8 +58,7 @@ namespace App.Auth.Controllers
         }
 
 
-        // POST: auth/register
-        [AllowAnonymous]
+        // POST: auth/register 
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegisterUser user)
         {
@@ -88,14 +88,13 @@ namespace App.Auth.Controllers
                     return Ok(loggedInUser);
                 }
             }
-            
+
 
             return BadRequest(new { message = "User registration unsuccessful" });
         }
 
 
         // POST: auth/refreshToken
-        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> RefreshToken(TokenModel tokenModel)
         {
@@ -107,14 +106,20 @@ namespace App.Auth.Controllers
             string? accessToken = tokenModel.AccessToken ?? "";
             string? refreshToken = tokenModel.RefreshToken ?? "";
             var refreshTokenRespon = await _authService.RefreshToken(accessToken, refreshToken);
-            return Ok(refreshTokenRespon);
+            if (refreshTokenRespon != null)
+            {
+                return Ok(refreshTokenRespon);
+            }
+
+            return BadRequest("Invalid client request");
 
         }
 
 
         // GET: auth/test
-        [Authorize(Roles = "Everyone")]
+
         [HttpGet]
+        [Authorize(Roles = "Admin,Tenant")]
         public IActionResult Test()
         {
             string token = Request.Headers["Authorization"].ToString() ?? "";

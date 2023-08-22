@@ -2,11 +2,8 @@
 using App.Auth.DTO;
 using DAL.Models.Tenant;
 using Helper;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using static IdentityServer4.Models.IdentityResources;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Authorization; 
+using Microsoft.AspNetCore.Mvc;  
 
 namespace App.Auth.Controllers
 {

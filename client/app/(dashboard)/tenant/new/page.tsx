@@ -82,15 +82,18 @@ export default function NewTanent() {
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    const options = {
+    fetch("/api/tenant", {
       method: "POST",
       body: JSON.stringify(data),
-    };
-
-    fetch("/api/tenant", options)
+    })
       .then((res) => {
-        alert("Thành công");
-        console.log(res);
+        console.log(res.text);
+
+        if (!res.ok) {
+          alert("Thất bại");
+        } else {
+          alert("Thành công");
+        }
       })
       .catch((e) => {
         console.log(e);

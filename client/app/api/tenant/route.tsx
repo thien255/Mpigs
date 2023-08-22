@@ -69,11 +69,14 @@ export async function GET(req: Request, { params }: { params: TenantRequest }) {
   }
 }
 
-export async function POST(req: Request, { params }: { params: TenantForm }) {
+export async function POST(req: Request, { params }: { params: any }) {
   try {
     const body = await req.json();
-    var res = httpHelper.post(process.env.AUTH_API + "/Tenant/Manage", params);
-    return res;
+    const res = await httpHelper.post(
+      process.env.AUTH_API + "/Tenant/Add",
+      body
+    );
+    return NextResponse.json(res);
   } catch (error) {
     console.log("[PRODUCTS_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
