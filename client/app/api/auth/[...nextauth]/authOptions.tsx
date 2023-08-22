@@ -60,21 +60,17 @@ const cookies: Partial<CookiesOptions> = {
 };
 
 const jwt = async ({ token, user }: { token: JWT; user?: User }) => {
-  console.log(token);
   // first call of jwt function just user object is provided
+  console.log(token)
   if (user?.email) {
-    return { ...token, ...user };
+    console.log(user)
+    return Promise.resolve({ ...token, ...user });
   }
   // on subsequent calls, token is provided and we need to check if it's expired
-  if (token?.accessTokenExpires) {
-    let number = Date.now() / 1000 > token?.accessTokenExpires;
-    console.log("accessTokenExpires: " + number);
-    if (Date.now() / 1000 > token?.accessTokenExpires) {
-      return refreshAccessToken(token);
-    }
+  if (token?.accessTokenExpires && (Date.now() / 1000 > token?.accessTokenExpires)) {
+    return refreshAccessToken(token);
   }
-
-  return { ...token, ...user };
+  return Promise.resolve({ ...token, ...user });
 };
 
 const signIn = async ({ user }: { user?: User }) => {
@@ -90,7 +86,9 @@ const session = ({
   session: Session;
   token: JWT;
 }): Promise<Session> => {
-  if (!token?.accessTokenExpires || !token) {
+  if (!token || !token?.accessTokenExpires) {
+    console.log("day la token")
+    console.log(token)
     return Promise.reject({
       error: new Error("Please log in again"),
     });
@@ -106,12 +104,14 @@ const session = ({
     });
   }
   session.token = token?.accessToken as string;
+  session.role = token?.role;
   return Promise.resolve(session);
 };
 
 const redirect = ({ url, baseUrl }: { url: String; baseUrl: string }) => {
   return baseUrl;
 };
+
 const authOptions: AuthOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -146,12 +146,8 @@ const authOptions: AuthOptions = {
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
           return user;
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null;
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
+        return null;
       },
     }),
   ],

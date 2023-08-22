@@ -6,9 +6,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { AlertCircle } from "lucide-react"
+import { useToast } from "@/components/ui/use-toast"
+import { AlertCircle, Loader2 } from "lucide-react"
 import {
     Alert,
     AlertTitle,
@@ -38,21 +38,23 @@ export default function SignUpPage() {
     const { errors } = formState;
 
     const onSubmit = async (data: any) => {
-        setMessage("");
         setLoading(true);
-        const options = {
+        const res = await fetch("/api/auth/sign-up", {
             method: "POST",
             body: JSON.stringify(data),
-        };
-        const res = await fetch("/api/auth/sign-up", options);
+        });
         setLoading(false);
         if (res.ok) {
-            const nextUrl = searchParams.get("next");
-            router.push(nextUrl ?? "/");
-            router.refresh();
-        } else {
             var result = await res.json();
-            setMessage(result.message);
+            if (result.code == 200) {
+                const nextUrl = searchParams.get("next");
+                router.push(nextUrl ?? "/");
+                router.refresh();
+            } else {
+                setMessage(result.message);
+            }
+        } else {
+            setMessage("Internal server error");
         }
     };
 
@@ -109,7 +111,7 @@ export default function SignUpPage() {
                                             disabled={isLoading}
                                         >
                                             <Loader2 className={`${!isLoading ? "hidden" : ""} mr-2 h-4 w-4 animate-spin`} />
-                                            Đăng nhập
+                                            Đăng ký
                                         </Button>
                                     </div>
                                     <div className="">
