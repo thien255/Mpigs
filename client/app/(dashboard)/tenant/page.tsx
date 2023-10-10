@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,7 +8,23 @@ import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
 import {
   Popover,
   PopoverContent,
@@ -75,16 +91,62 @@ const formSchema = z
     ShortName: true,
     Name: true,
   });
+export type Tenant = {
+  id: string;
+  shortName: string;
+  name: string;
+  type: string;
+  status: "pending" | "processing" | "success" | "failed";
+  email: string;
+};
 
 export default function NewTanent() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+  });
+  const columns: ColumnDef<Tenant>[] = [
+    {
+      accessorKey: "Id",
+      header: "Id",
+    },
+    {
+      accessorKey: "shortName",
+      header: "Short Name",
+    },
+    {
+      accessorKey: "name",
+      header: "Name",
+    },
+  ];
+
+  const [data, setData] = useState<Tenant[]>([]);
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     console.log(data);
   }
 
+  function getData() {
+    fetch("/api/tenant", {
+      method: "POST",
+    })
+      .then((res) => {
+        console.log(res.text);
+
+        if (!res.ok) {
+          alert("Thất bại");
+        } else {
+          alert("Thành công");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
   return (
     <main className="w-full p-6 mx-auto">
       <div className="w-full max-w-full px-3 m-auto flex-0  h-full">
@@ -252,6 +314,56 @@ export default function NewTanent() {
             </Form>
           </CardContent>
         </Card>
+        <div>
+          <Table>
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <TableHead key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                      </TableHead>
+                    );
+                  })}
+                </TableRow>
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </main>
   );
