@@ -6,7 +6,7 @@ import React from "react";
 import { getServerSession } from "next-auth/next";
 import AuthentionContext from "./authention";
 import authOptions from "@/api/auth/[...nextauth]/authOptions";
-
+import { Toaster } from "@/components/ui/toaster"
 const roboto = Roboto({
   weight: ["300", "400", "700", "900"],
   style: ["normal", "italic"],
@@ -30,7 +30,10 @@ export default async function RootLayout({
     <AuthentionContext session={session}>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <body className={roboto.className}>{children}</body>
+        <body className={roboto.className}>
+          {children}
+          <Toaster />
+        </body>
       </html>
     </AuthentionContext>
   );

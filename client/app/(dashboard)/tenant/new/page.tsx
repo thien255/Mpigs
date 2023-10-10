@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -23,8 +22,7 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
-import { CalendarIcon, Check } from "lucide-react";
+import { CalendarIcon, Check, Loader2 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -36,12 +34,8 @@ import {
   FormMessage,
   FormDescription,
 } from "@/components/ui/form";
-
-interface TenantDTO {
-  Code: string;
-  ShortName: string;
-}
-
+import { useToast } from "@/components/ui/use-toast"
+import { useSession } from "next-auth/react";
 const formSchema = z
   .object({
     Code: z
@@ -77,26 +71,59 @@ const formSchema = z
   });
 
 export default function NewTanent() {
+  const [isLoading, setIsLoading] = useState(false);
+  const { data: session } = useSession({
+    required: true,
+  });
+  if (!session?.role?.includes("Admin")) {
+    return (
+      <h1>Access Denied</h1>
+    )
+  }
+  const { toast } = useToast()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
+    setIsLoading(true);
     fetch("/api/tenant", {
       method: "POST",
       body: JSON.stringify(data),
     })
       .then((res) => {
-        console.log(res.text);
+        if (res.ok && res.status == 200) {
+          res.json().then((result) => {
+            if (result.code == "00") {
+              form.reset();
+              toast({
+                title: "Success.",
+                description: result.message,
+              })
+            } else
+              toast({
+                variant: "destructive",
+                title: "Ồ ồ! Đã xảy ra sự cố.",
+                description: result.message,
+              })
+          });
 
-        if (!res.ok) {
-          alert("Thất bại");
         } else {
-          alert("Thành công");
+          toast({
+            variant: "destructive",
+            title: "Ồ ồ! Đã xảy ra sự cố.",
+            description: res.statusText,
+          })
         }
       })
       .catch((e) => {
-        console.log(e);
+        toast({
+          variant: "destructive",
+          title: "Ồ ồ! Đã xảy ra sự cố.",
+          description: "Đã xảy ra lỗi trong quá trình xử lý, vui lòng thử lại sau.",
+        })
+      }).finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -382,7 +409,12 @@ export default function NewTanent() {
                 />
                 <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 xl:grap-3 2xl:gap-4">
                   <Button className="bg-gradient-cyan font-medium">
-                    <Check className="mr-2 h-4 w-4" /> Thêm mới
+                    <Check className={`${isLoading ? "hidden" : ""} mr-2 h-4 w-4`} />
+                    <Loader2
+                      className={`${!isLoading ? "hidden" : ""
+                        } mr-2 h-4 w-4 animate-spin`}
+                    />
+                    Thêm mới
                   </Button>
                   <Link href="/tenant">
                     <Button className="bg-secondary text-black font-medium">

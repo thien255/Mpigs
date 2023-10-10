@@ -1,15 +1,17 @@
 using App.Auth.Business;
 using App.Auth.DTO;
 using DAL.Models.Tenant;
+using Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 
 namespace App.Auth.Controllers
 {
     [ApiController]
     //[Route("[controller]/[action]")]
-    
+
     [Route("[controller]/[action]")]
     public class AuthController : ControllerBase
     {
@@ -24,7 +26,7 @@ namespace App.Auth.Controllers
 
 
         // POST: auth/login
-       
+
         [HttpPost]
         public async Task<IActionResult> Sign([FromBody] SignForm user)
         {
@@ -60,15 +62,24 @@ namespace App.Auth.Controllers
 
         // POST: auth/register 
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody] RegisterUser user)
+        public async Task<ResultBase<string>> Register([FromBody] RegisterUser user)
         {
             if (string.IsNullOrEmpty(user.UserName))
             {
-                return BadRequest(new { message = "User name needs to entered" });
+
+                return new ResultBase<string>()
+                {
+                    Code = HttpStatusCode.BadRequest.ToString(),
+                    Message = "User name needs to entered"
+                }; 
             }
             else if (string.IsNullOrEmpty(user.Password))
             {
-                return BadRequest(new { message = "Password needs to entered" });
+                return new ResultBase<string>()
+                {
+                    Code = HttpStatusCode.BadRequest.ToString(),
+                    Message = "Password needs to entered"
+                }; 
             }
 
             User userToRegister = new User()
@@ -78,19 +89,8 @@ namespace App.Auth.Controllers
                 Password = user.Password,
             };
 
-            var registeredUser = await _authService.Register(userToRegister);
-            if (registeredUser != null)
-            {
-                SignRespon? loggedInUser = await _authService.SignAsync(registeredUser.UserName ?? "", user.Password ?? "");
-
-                if (loggedInUser != null)
-                {
-                    return Ok(loggedInUser);
-                }
-            }
-
-
-            return BadRequest(new { message = "User registration unsuccessful" });
+            return await _authService.Register(userToRegister);
+             
         }
 
 

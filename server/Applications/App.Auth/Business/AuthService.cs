@@ -12,6 +12,7 @@ namespace App.Auth.Business
     using BCrypt.Net;
     using DAL.Contexts;
     using DAL.Models.Tenant;
+    using global::Helper;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using System;
@@ -61,10 +62,11 @@ namespace App.Auth.Business
                 Email = user.UserName,
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
+                Role = roles.Select(x => x.Role).ToList(),
                 Expiration = jwtSecurityToken.ValidTo,
                 AccessTokenExpires = ((DateTimeOffset)jwtSecurityToken.ValidTo).ToUnixTimeSeconds()
             };
-            
+
             _ = AddLog(new Logged
             {
                 UserName = user.UserName,
@@ -76,17 +78,26 @@ namespace App.Auth.Business
             return result;
         }
 
-        public async Task<User?> Register(User user)
+        public async Task<ResultBase<string>> Register(User user)
         {
             var checkExist = await _dbContext.Users.AnyAsync(u => u.UserName == user.UserName);
-            if (checkExist)
+            if (!checkExist)
             {
                 user.Password = BCrypt.HashPassword(user.Password).ToString();
                 _dbContext.Users.Add(user);
                 await _dbContext.SaveChangesAsync();
-                return user;
+                return new ResultBase<string>
+                {
+                    Code = "00",
+                    Message = "Success"
+                };
             }
-            return null;
+
+            return new ResultBase<string>
+            {
+                Code = "400",
+                Message = "Đã tồn tại tài khoản trên hệ thống"
+            };
         }
 
         public async Task<TokenModel?> RefreshToken(string accessToken, string refreshToken)

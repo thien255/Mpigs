@@ -1,4 +1,4 @@
-import Router from "next/router";
+import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import authOptions from "@/api/auth/[...nextauth]/authOptions";
 export const httpHelper = {
@@ -61,12 +61,12 @@ function handleResponse(response: Response) {
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
     if (response.status !== 200) {
-      if ([401, 403].includes(response.status)) {
-        // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
-        console.log("Authen");
-        getServerSession(authOptions).then((res) => {
-          console.log(res);
-        });
+      if ([403].includes(response.status)) {
+        //Forbidden response returned from api 
+        return NextResponse.json({ message: 'Forbidden' }, { status: 403 })
+      } else if ([401].includes(response.status)) {
+        // auto logout if 401 Unauthorized 
+        return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
       }
 
       const error = (data && data.message) || response.statusText;

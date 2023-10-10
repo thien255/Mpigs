@@ -10,6 +10,7 @@
         public long AccessTokenExpires { get; set; }
         
         public string? RefreshToken { get; set; }
+        public List<string> Role { get; set; } = new List<string>();
         public string? Avatar { get; set; } 
     }
 }
