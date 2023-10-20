@@ -61,13 +61,14 @@ const cookies: Partial<CookiesOptions> = {
 
 const jwt = async ({ token, user }: { token: JWT; user?: User }) => {
   // first call of jwt function just user object is provided
-  console.log(token)
   if (user?.email) {
-    console.log(user)
     return Promise.resolve({ ...token, ...user });
   }
   // on subsequent calls, token is provided and we need to check if it's expired
-  if (token?.accessTokenExpires && (Date.now() / 1000 > token?.accessTokenExpires)) {
+  if (
+    token?.accessTokenExpires &&
+    Date.now() / 1000 > token?.accessTokenExpires
+  ) {
     return refreshAccessToken(token);
   }
   return Promise.resolve({ ...token, ...user });
@@ -87,8 +88,6 @@ const session = ({
   token: JWT;
 }): Promise<Session> => {
   if (!token || !token?.accessTokenExpires) {
-    console.log("day la token")
-    console.log(token)
     return Promise.reject({
       error: new Error("Please log in again"),
     });

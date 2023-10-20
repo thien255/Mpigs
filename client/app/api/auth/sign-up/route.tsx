@@ -16,7 +16,6 @@ export async function POST(req: Request, { params }: { params: any }) {
     const data = await res.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.log("[PRODUCTS_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }

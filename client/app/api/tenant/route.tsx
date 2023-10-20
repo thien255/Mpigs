@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { httpHelper } from "@/api/httpHelper";
+import { NextApiRequest } from "next";
 export interface ResultBaseOfTenant {
   code: string;
   message: string;
@@ -48,28 +49,37 @@ export interface TenantForm {
 }
 
 export interface TenantRequest {
-  startDate: string | undefined;
-  endDate: string | undefined;
-  search: string | undefined;
+  startDate?: string | undefined;
+  endDate?: string | undefined;
+  search?: string | undefined;
   status?: number;
-  sortDir: string | undefined;
+  sortDir?: string | undefined;
   sortExpr?: string | undefined;
   pageSize?: number;
   pageIndex: number;
 }
 
-export async function GET(req: Request, { params }: { params: TenantRequest }) {
+export async function GET(req: Request) {
   try {
-    const body = await req.json();
-    var res = httpHelper.post(process.env.AUTH_API + "/Tenant/Manage", body);
-    return res;
+    const urlObj = new URL(req.url);
+    const body = {
+      startDate: urlObj.searchParams.get("startDate"),
+      endDate: urlObj.searchParams.get("endDate"),
+      search: urlObj.searchParams.get("search"),
+      status: Number(urlObj.searchParams.get("status")),
+      sortDir: urlObj.searchParams.get("sortDir"),
+      sortExpr: urlObj.searchParams.get("sortExpr"),
+      pageSize: Number(urlObj.searchParams.get("pageSize")),
+      pageIndex: Number(urlObj.searchParams.get("pageIndex")),
+    };
+    console.log(body);
+    return httpHelper.post(process.env.AUTH_API + "/Tenant/Manage", body);
   } catch (error) {
-    console.log("[PRODUCTS_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }
 
-export async function POST(req: Request, { params }: { params: any }) {
+export async function POST(req: Request) {
   try {
     const body = await req.json();
     const res = await httpHelper.post(
@@ -83,7 +93,7 @@ export async function POST(req: Request, { params }: { params: any }) {
   }
 }
 
-export async function PUT(req: Request, { params }: { params: TenantForm }) {
+export async function PUT(req: Request) {
   try {
     const body = await req.json();
 
@@ -93,7 +103,7 @@ export async function PUT(req: Request, { params }: { params: TenantForm }) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(params),
+      body: JSON.stringify(body),
     };
     const res = await fetch(process.env.AUTH_API + "/Tenant/Edit", options);
     const data = await res.json();

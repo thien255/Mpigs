@@ -59,19 +59,20 @@ async function authHeader(url: string) {
 
 function handleResponse(response: Response) {
   return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-    if (response.status !== 200) {
-      if ([403].includes(response.status)) {
-        //Forbidden response returned from api 
-        return NextResponse.json({ message: 'Forbidden' }, { status: 403 })
-      } else if ([401].includes(response.status)) {
-        // auto logout if 401 Unauthorized 
-        return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
-      }
+    if ([403].includes(response.status)) {
+      //Forbidden response returned from api
+      return NextResponse.json({ message: "Forbidden" }, { status: 403 });
+    } else if ([401].includes(response.status)) {
+      // auto logout if 401 Unauthorized
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
 
+    const data = text && JSON.parse(text);
+    console.log(data);
+    if (response.status !== 200) {
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
-    return data;
+    return NextResponse.json(data);
   });
 }

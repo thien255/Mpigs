@@ -55,8 +55,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </div>
-      <div className="flex overflow-hidden bg-gray-50 dark:bg-gray-900 c pt-16">
-        <div className="flex fixed top-0 dark:bg-black left-0 z-20 flex-col flex-shrink-0 pt-16 w-64 h-full duration-200 lg:flex transition-width lg:w-64">
+      <div className="flex overflow-hidden bg-gray-50 dark:bg-slate-950 c pt-16">
+        <div className="flex fixed top-0 dark:bg-gray-950 left-0 z-20 flex-col flex-shrink-0 pt-16 w-64 h-full duration-200 lg:flex transition-width lg:w-64">
           <div className="flex relative flex-col flex-1 pt-0 min-h-0">
             <div className="flex overflow-y-auto flex-col flex-1 pt-8 pb-4">
               <div className="flex-1 px-3">

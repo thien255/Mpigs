@@ -1,10 +1,16 @@
 "use client";
-import { useSession } from "next-auth/react"
-import { AiOutlineHome } from "react-icons/ai";
+import { useSession } from "next-auth/react";
+import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
+import {
+  PiUsers,
+  PiWarehouseDuotone,
+  PiChartPieSlice,
+  PiBookmarkDuotone,
+} from "react-icons/pi";
 import MenuItem from "./menu-item";
 interface MenuItem {
   icon?: any;
-  href?: string | null;
+  href: string | "#";
   label: string;
   subMenu?: boolean;
   children?: MenuItem[];
@@ -21,21 +27,17 @@ const menuList: MenuItem[] = [
     label: "Dịch vụ",
   },
   {
-    href: null,
+    icon: PiWarehouseDuotone,
     label: "Thuê bao",
-    subMenu: true,
-    children: [
-      {
-        href: "/tenant/new",
-        label: "Thêm mới",
-      },
-    ],
+    href: "/tenant",
   },
   {
+    icon: PiBookmarkDuotone,
     href: "/news",
     label: "Tin tức",
   },
   {
+    icon: PiUsers,
     href: "/user",
     label: "Tài khoản",
     children: [
@@ -50,8 +52,9 @@ const menuList: MenuItem[] = [
     ],
   },
   {
+    icon: PiChartPieSlice,
     href: "/contact",
-    label: "Liên hệ",
+    label: "Báo cáo",
   },
 ];
 
@@ -59,12 +62,11 @@ const Menu = () => {
   const { data: session } = useSession();
   const user = session?.user;
   const checkRole = function (role: string | null) {
-    const index = user?.role.findIndex(x => x === role);
-    if (index && index > 0)
-      return true;
+    const index = user?.role.findIndex((x) => x === role);
+    if (index && index > 0) return true;
 
     return false;
-  }
+  };
 
   return (
     <ul className="pb-2 pt-1">

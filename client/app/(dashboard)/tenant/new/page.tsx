@@ -34,7 +34,7 @@ import {
   FormMessage,
   FormDescription,
 } from "@/components/ui/form";
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast";
 import { useSession } from "next-auth/react";
 const formSchema = z
   .object({
@@ -71,19 +71,19 @@ const formSchema = z
   });
 
 export default function NewTanent() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
+
+  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const { data: session } = useSession({
     required: true,
   });
+
   if (!session?.role?.includes("Admin")) {
-    return (
-      <h1>Access Denied</h1>
-    )
+    return <h1>Access Denied</h1>;
   }
-  const { toast } = useToast()
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-  });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     setIsLoading(true);
@@ -99,30 +99,31 @@ export default function NewTanent() {
               toast({
                 title: "Success.",
                 description: result.message,
-              })
+              });
             } else
               toast({
                 variant: "destructive",
                 title: "Ồ ồ! Đã xảy ra sự cố.",
                 description: result.message,
-              })
+              });
           });
-
         } else {
           toast({
             variant: "destructive",
             title: "Ồ ồ! Đã xảy ra sự cố.",
             description: res.statusText,
-          })
+          });
         }
       })
       .catch((e) => {
         toast({
           variant: "destructive",
           title: "Ồ ồ! Đã xảy ra sự cố.",
-          description: "Đã xảy ra lỗi trong quá trình xử lý, vui lòng thử lại sau.",
-        })
-      }).finally(() => {
+          description:
+            "Đã xảy ra lỗi trong quá trình xử lý, vui lòng thử lại sau.",
+        });
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   }
@@ -409,10 +410,13 @@ export default function NewTanent() {
                 />
                 <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 xl:grap-3 2xl:gap-4">
                   <Button className="bg-gradient-cyan font-medium">
-                    <Check className={`${isLoading ? "hidden" : ""} mr-2 h-4 w-4`} />
+                    <Check
+                      className={`${isLoading ? "hidden" : ""} mr-2 h-4 w-4`}
+                    />
                     <Loader2
-                      className={`${!isLoading ? "hidden" : ""
-                        } mr-2 h-4 w-4 animate-spin`}
+                      className={`${
+                        !isLoading ? "hidden" : ""
+                      } mr-2 h-4 w-4 animate-spin`}
                     />
                     Thêm mới
                   </Button>

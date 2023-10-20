@@ -6,7 +6,7 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { useState } from "react";
 interface Item {
   icon?: IconType;
-  href?: string | null;
+  href: string | "#";
   label: string;
   subMenu?: boolean;
   children?: Item[];
@@ -23,39 +23,45 @@ const MenuItem = (props: MenuItemProp) => {
       {!menu.children ? (
         <>
           <Link
-            className="flex w-full items-center py-2.5 px-4 text-base font-normal text-black rounded-lg hover:bg-gray-200 transition-all duration-200"
+            className="flex w-full items-center mx-2.5 py-2.5 px-4 text-base font-normal text-dark-700 dark:opacity-80 dark:text-white   rounded-lg transition-all duration-200"
             href={menu.href}
           >
-            <Icon className="bg-white shadow-lg shadow-gray-300  text-dark-700 w-8 h-8 p-2.5 mr-1 rounded-lg text-center grid place-items-center" />
-            <span className="ml-3 font-normal">{menu.label}</span>
+            <div className="w-8 h-8 bg-white text-black rounded-lg text-center  grid place-items-center mr-1 shadow">
+              <Icon />
+            </div>
+            <span className="ml-3 text-sm">{menu.label}</span>
           </Link>
         </>
       ) : (
         <>
           <button
-            className="flex w-full items-center py-2.5 px-4 text-base font-normal text-black rounded-lg hover:bg-gray-200 transition-all duration-200"
+            className="flex w-full items-center text-base font-normal mx-2.5 py-2.5 px-4 text-dark-700 dark:text-white dark:opacity-80 rounded-lgtransition-all duration-200"
             onClick={() => setShowSubMenu(!showSubMenu)}
           >
-            <Icon className="bg-white shadow-lg shadow-gray-300  text-dark-700 w-8 h-8 p-2.5 mr-1 rounded-lg text-center grid place-items-center" />
-            <span className="ml-3 font-normal">{menu.label}</span>
+            <div className="w-8 h-8 bg-white text-black rounded-lg text-center shadow grid place-items-center mr-1 ">
+              <Icon />
+            </div>
+            <span className="ml-3 text-sm">{menu.label}</span>
             {!showSubMenu ? (
-              <BiChevronDown className="w-4 h-4 ml-auto text-gray-700 text-xs" />
+              <BiChevronDown className="w-4 h-4 ml-auto text-xs" />
             ) : (
-              <BiChevronUp className="w-4 h-4 ml-auto text-gray-700 text-xs" />
+              <BiChevronUp className="w-4 h-4 ml-auto text-xs" />
             )}
           </button>
           <ul
             onClick={() => setShowSubMenu(!showSubMenu)}
-            className={(showSubMenu ? "" : "hidden") + " duration-300"}
+            className={`${
+              showSubMenu ? "" : "hidden"
+            } ease-soft-in-out transition duration-20`}
           >
             {menu.children?.map((children, j) => {
               return (
                 <li key={j}>
                   <Link
-                    className="text-sm text-black font-normal rounded-lg flex items-center p-2 group hover:bg-gray-200 transition duration-75 pl-11"
+                    className="text-sm text-dark-700 font-normal rounded-lg flex items-center p-2 group transition duration-75 pl-11 dark:text-white dark:opacity-80"
                     href={children.href}
                   >
-                    <span className="ml-3 font-normal">{children.label}</span>
+                    <span className="ml-3">{children.label}</span>
                   </Link>
                 </li>
               );

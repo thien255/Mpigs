@@ -25,8 +25,20 @@ namespace App.Auth.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<DataPagingResult<Tenant>> Manage(TenantRequest entity)
-        { 
-           return await _tenantService.Paging(entity); 
+        {
+            try
+            {
+                return await _tenantService.Paging(entity);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Đã xảy ra lỗi trong quá trình xử lý.");
+                return new DataPagingResult<Tenant>()
+                {
+                    Code = "500",
+                    Message = ex.Message,
+                };
+            } 
         }
 
 

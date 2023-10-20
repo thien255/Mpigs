@@ -6,6 +6,7 @@ using Dapper;
 using Helper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System.Data;
 using System.Net.WebSockets;
 
@@ -23,8 +24,12 @@ namespace App.Auth.Business
 
         public async Task<DataPagingResult<Tenant>> Paging(TenantRequest request)
         {
-            var result = new DataPagingResult<Tenant>();
-            var sql = "USP_Get_UserPaging";
+            var result = new DataPagingResult<Tenant>()
+            {
+                Code = ResultCode.Code.Success,
+                Message = ResultCode.Message.Success
+            };
+            var sql = "USP_Get_TenantPaging";
             var connString = _configuration.GetConnectionString("Default");
             using (var connection = new SqlConnection(connString))
             {

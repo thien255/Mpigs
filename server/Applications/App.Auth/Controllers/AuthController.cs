@@ -71,7 +71,7 @@ namespace App.Auth.Controllers
                 {
                     Code = HttpStatusCode.BadRequest.ToString(),
                     Message = "User name needs to entered"
-                }; 
+                };
             }
             else if (string.IsNullOrEmpty(user.Password))
             {
@@ -79,7 +79,7 @@ namespace App.Auth.Controllers
                 {
                     Code = HttpStatusCode.BadRequest.ToString(),
                     Message = "Password needs to entered"
-                }; 
+                };
             }
 
             User userToRegister = new User()
@@ -90,7 +90,7 @@ namespace App.Auth.Controllers
             };
 
             return await _authService.Register(userToRegister);
-             
+
         }
 
 
@@ -98,21 +98,29 @@ namespace App.Auth.Controllers
         [HttpPost]
         public async Task<IActionResult> RefreshToken(TokenModel tokenModel)
         {
-            if (tokenModel is null)
+            try
             {
+                if (tokenModel is null)
+                {
+                    return BadRequest("Invalid client request");
+                }
+
+                string? accessToken = tokenModel.AccessToken ?? "";
+                string? refreshToken = tokenModel.RefreshToken ?? "";
+                var refreshTokenRespon = await _authService.RefreshToken(accessToken, refreshToken);
+                if (refreshTokenRespon != null)
+                {
+                    return Ok(refreshTokenRespon);
+                }
+
+                return BadRequest("Invalid client request");
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "RefreshToken");
                 return BadRequest("Invalid client request");
             }
-
-            string? accessToken = tokenModel.AccessToken ?? "";
-            string? refreshToken = tokenModel.RefreshToken ?? "";
-            var refreshTokenRespon = await _authService.RefreshToken(accessToken, refreshToken);
-            if (refreshTokenRespon != null)
-            {
-                return Ok(refreshTokenRespon);
-            }
-
-            return BadRequest("Invalid client request");
-
         }
 
 
